@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package order;
+
+//protoc --go_out=. --go-grpc_out=. proto/order.proto
+// destination is dependent on go_package path shown as below "ge-proto/ecommerce"
+option go_package="generated-proto/order";
+
+service OrderManagement {
+  //unary
+  rpc GetOrder(ProductId) returns (Order);
+}
+
+
+message Order {
+  string id = 1;
+  repeated string items = 2;
+  string description = 3;
+  uint64 price = 4;
+}
+
+message ProductId {
+  string id = 1;
+}
